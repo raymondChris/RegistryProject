@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 
 import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
-import RegistryPage from './Pages/RegistryPage/RegistryPage'
+import RegistryPage from './Pages/RegistryPage/RegistryPage';
+import Modal from './UI/Modal';
+import Button from './UI/Button';
 
-import { CssBaseline, Typography} from '@material-ui/core/';
+import { CssBaseline, Typography, TextField} from '@material-ui/core/';
 import { withStyles } from '@material-ui/core/styles';
 
 
@@ -22,30 +24,131 @@ const styles = theme => ({
 class App extends Component {
 
   state = {
+    /*
+    registryList: [
+      {
+        registryList: [
+          {
+            registryName: 'persona',
+            field: [
+                {
+                  label: 'name'
+                  isRequired: true,
+                  type: 'string,
+                  value: 'mickey',
+                },
+                {
+
+                }
+
+            ]
+          }
+        ]
+      }
+    ]
+    */
     registryList: [
       {
         registryName: 'persona',
-        recordInfo: [             /* dara il nome alle colonne */
-          { name: 'mickey', type: 'string' },
-          { lastName: 'mouse', type: 'string' },
-          { age: 91, type: 'integer' },
-        ]
+        recordInfo: [[
+          {
+            label: 'name',
+            outPut: 'Name',
+            value: 'mickey',
+            type: 'string',
+            isRequired: true,
+          },
+          { 
+            label: 'lastName',
+            outPut: 'Last Name',
+            value: 'mouse',
+            type: 'string',
+            isRequired: true,
+          },
+          { 
+            label: 'age',
+            outPut: 'Age',
+            value: 91,
+            type: 'integer',
+            isRequired: false,
+          },
+        ],
+        [
+          {
+            label: 'name',
+            outPut: 'Name',
+            value: 'goofy',
+            type: 'string',
+            isRequired: true,
+          },
+          { 
+            label: 'lastName',
+            outPut: 'Last Name',
+            value: '',
+            type: 'string',
+            isRequired: true,
+          },
+          { 
+            label: 'age',
+            outPut: 'Age',
+            value: 87,
+            type: 'integer',
+            isRequired: false,
+          },
+        ]] 
       },
       {
         registryName: 'animale',
-        recordInfo: [             /* dara il nome alle colonne */
-          { name: 'pluto', type: 'string' },
-          { razza: 'Chien de Saint-Hubert', type: 'string' },
-          { age: 89, type: 'integer' },
-        ]
-      },
+        recordInfo: [[
+          { 
+            label: 'name',
+            outPut: 'Name',
+            value: 'pluto',
+            type: 'string',
+            isRequired: true,
+          },
+          { 
+            label: 'race',
+            outPut: 'Race',
+            value: 'Bloodhound',
+            type: 'string',
+            isRequired: true,
+          },
+          { 
+            label: 'age',
+            outPut: 'Age',
+            value: 79,
+            type: 'integer',
+            isRequired: false,
+          },
+        ]]
+      }
     ],
     whichRegistry: '',
+    isOpen: false,
+    modalState: undefined,
   }
 
   registrySelectedHandler = (e, index) => {
-    console.log(index)
-    this.setState({whichRegistry: this.state.registryList[index].registryName})
+    this.setState({whichRegistry: {...this.state.registryList[index]}})
+  }
+
+  setModalHandler = (title, body, action) => {
+    const modal = <Modal
+                    title={title}
+                    body={body}
+                    action={action}
+                    close={this.hideModalHandler}
+                  />
+    this.setState({modalState: modal})
+  }
+
+  showModalHandler = () => {
+    this.setState({isOpen: true})
+  }
+
+  hideModalHandler = () => {
+    this.setState({isOpen: false})
   }
 
   render() {
@@ -54,19 +157,26 @@ class App extends Component {
   return (
     <div className={classes.root}>
       <CssBaseline />
-
+      {this.state.isOpen ? this.state.modalState || null : null}
       <Navbar/>
 
       <Sidebar 
-        clicked={this.registrySelectedHandler}
+        clickedAdd={() => {this.showModalHandler();
+                           this.setModalHandler(
+                            'Create a Registry',
+                            <form className={classes.root} noValidate autoComplete="off">
+                              <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+                            </form>,
+                            <Button type={'ok'}>Confirm</Button>);
+                          }
+        }
+        clickedSelected={this.registrySelectedHandler}
         list={this.state.registryList}/>
-
-      
 
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <RegistryPage
-          title={this.state.whichRegistry}
+          regSelect={this.state.whichRegistry}
         />
       </main>
 

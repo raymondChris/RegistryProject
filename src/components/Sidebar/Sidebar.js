@@ -2,8 +2,8 @@ import React from 'react';
 
 import Button from '../../UI/Button';
 
-import Mail from '@material-ui/icons/Mail';
-import { Drawer, Divider, List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
+import { PlaylistAdd } from '@material-ui/icons';
+import { Drawer, Divider, List, ListItem, ListItemText, ListItemIcon, TextField } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
@@ -23,14 +23,11 @@ const styles = theme => ({
   
 });
 
+
+
 const sidebar = (props) => {
-
-  const panelButton = <Button
-                        type={'addtable'}
-                      >&#43;
-                      </Button>
   const { classes, list } = props;
-
+  const title = (list) ? 'Registry List' : 'Create a Registry'
   return (
     <div>
       <Drawer
@@ -41,23 +38,31 @@ const sidebar = (props) => {
         }}
       >
         <div className={classes.toolbar} />
-          <div className={classes.pnlButton}>
-            {panelButton}
-          </div>
-            
+          <List>
+            <ListItem>
+              <ListItemText primary={title}/>
+              <ListItemIcon onClick={props.clickedAdd}>
+                <Button
+                  type={'addtable'}
+                >
+                  <PlaylistAdd/>
+                </Button>
+                  {/*<PlaylistAdd/>*/}
+              </ListItemIcon>
+            </ListItem>
+          </List>
           <Divider/>
           <List>
             {list.map((registry, index) => (
               <ListItem
-                onClick={e => {props.clicked(e, index)}}
+                onClick={e => {props.clickedSelected(e, index)}}
                 button
                 key={index+registry}
               >
                 {/*<ListItemIcon>
                   <Mail/>
                 </ListItemIcon>}*/}
-                <ListItemText
-                  primary={registry.registryName.charAt(0).toUpperCase() + registry.registryName.substring(1)} />
+                <ListItemText primary={registry.registryName.charAt(0).toUpperCase() + registry.registryName.substring(1)} />
               </ListItem>
             ))}
           </List>

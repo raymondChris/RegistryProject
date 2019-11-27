@@ -4,8 +4,10 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
     addTable: {
-        border: '1px solid #cccccc',
         color: '#555555',
+        minWidth: '30px',
+        lineHeight: '15px',
+        float: 'right',
     },
     okBtn: {
         backgroundColor: 'green',

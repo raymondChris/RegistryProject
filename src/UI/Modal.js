@@ -48,7 +48,7 @@ const  modal = (props) => {
   return (
       <Modal
         className={classes.modalContainer}
-        open={props.open}
+        open={true}
         onClose={props.close}
       >
         <div className={classes.paper}>

@@ -1,10 +1,20 @@
-import React from 'react'
+import React from 'react';
+
+import Table from '../../components/Table/Table';
 
 const registryPage = props => {
-    const reg = props.title.charAt(0).toUpperCase() + props.title.substring(1)
-    const title = (props.title) ? 'Registry of ' + reg : 'Seleziona un registro nella sidebar' 
+    const { registryName, recordInfo } = props.regSelect;
+    const reg = registryName ? registryName.charAt(0).toUpperCase() + registryName.substring(1) : null
+    const title = (reg) ? 'Registry of ' + reg : 'Seleziona un registro nella sidebar' 
     return(
-        <h1>{title}</h1>
+        <div>
+            <h1>{title}</h1>
+            <Table
+                title={reg || 'Table'}
+                recordList={recordInfo}
+            />
+        </div>
+        
     )
 }
 
