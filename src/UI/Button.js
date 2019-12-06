@@ -1,4 +1,6 @@
 import React from 'react';
+
+
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -17,6 +19,13 @@ const styles = theme => ({
         backgroundColor: 'none',
         border: '1px solid green',
         color: 'green',
+    },
+    delRow: {
+        color: '#888888',
+    },
+    addPerson: {
+        width: '40px',
+        color: '#666666',
     },
     default: {
         border: '1px solid grey',
@@ -37,6 +46,12 @@ const button = props => {
             break;
         case 'addtable':
             type = classes.addTable;
+            break;
+        case 'delRow':
+            type = classes.delRow;
+            break;
+        case 'addPerson':
+            type = classes.addPerson;
             break;
         default:
 

@@ -5,6 +5,7 @@ import Button from '../../UI/Button';
 import { PlaylistAdd } from '@material-ui/icons';
 import { Drawer, Divider, List, ListItem, ListItemText, ListItemIcon, TextField } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import SelectPrf from '../SelectPrf/SelectPrf'
 
 const drawerWidth = 240;
 
@@ -66,6 +67,7 @@ const sidebar = (props) => {
               </ListItem>
             ))}
           </List>
+          <Divider/>
       </Drawer>
       </div>
   )

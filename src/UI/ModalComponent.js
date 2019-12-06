@@ -36,7 +36,7 @@ const styles = {
   }
 };
 
-const modal = (props) => {
+const ModalComponent = (props) => {
 
   const { classes } = props;
 
@@ -46,23 +46,23 @@ const modal = (props) => {
   const action = props.action === undefined ? null : <div className={classes.action}>{props.action}</div>;
 
   return (
-      <Modal
+    <Modal
         className={classes.modalContainer}
-        open={false}
+        open={true}
         onClose={props.close}
       >
         <div className={classes.paper}>
-          <span
-            className={classes.closebtn}
-            onClick={props.close}
-          >&times;
-          </span>
-          {title}
-          {body}
-          {action}
+        <span
+          className={classes.closebtn}
+          onClick={props.close}
+        >&times;
+        </span>
+        {title}
+        {body}
+        {action}
         </div>
       </Modal>
   );
 }
 
-export default withStyles(styles)(modal)
+export default withStyles(styles)(ModalComponent)

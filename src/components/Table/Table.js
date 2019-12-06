@@ -1,24 +1,18 @@
 import React, { forwardRef } from 'react';
 
-import MaterialTable from 'material-table';
 
-import  { Add } from '@material-ui/icons/';
-import AddBox from '@material-ui/icons/AddBox';
-import ArrowDownward from '@material-ui/icons/ArrowDownward';
-import Check from '@material-ui/icons/Check';
-import ChevronLeft from '@material-ui/icons/ChevronLeft';
-import ChevronRight from '@material-ui/icons/ChevronRight';
-import Clear from '@material-ui/icons/Clear';
-import DeleteOutline from '@material-ui/icons/DeleteOutline';
-import Edit from '@material-ui/icons/Edit';
-import FilterList from '@material-ui/icons/FilterList';
-import FirstPage from '@material-ui/icons/FirstPage';
-import LastPage from '@material-ui/icons/LastPage';
-import Remove from '@material-ui/icons/Remove';
-import SaveAlt from '@material-ui/icons/SaveAlt';
-import Search from '@material-ui/icons/Search';
-import ViewColumn from '@material-ui/icons/ViewColumn';
-/*import * as Icons from '@material-ui/icons'; */
+import MaterialTable, { MTableToolbar } from 'material-table';
+
+import { withStyles } from '@material-ui/styles';
+
+import { Paper, Switch, Grid } from '@material-ui/core';
+
+import  { Add, PersonAdd, AddBox, ArrowDownward, Check,
+          ChevronLeft, ChevronRight, Clear, DeleteOutline,
+          Edit, FilterList, FirstPage, LastPage, Remove,
+          SaveAlt, Search, ViewColumn } from '@material-ui/icons/';
+
+import Button from '../../UI/Button';
 
 const tableIcons = {
     AddIcon: forwardRef((props, ref) => <Add {...props} ref={ref} />),
@@ -41,26 +35,150 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-const table = (props) => {
-    const { recordList } = props;
-    const columns =  recordList ? recordList[0].map( value => ({ title: value.outPut, field: value.label})) : [];
-    const data = recordList ? recordList.map( value => value.reduce((acc, cur) => ( {...acc, [cur.label] : cur.value || 'N/D'}), {})) : [];
+const styles = {
+    paper: {
+        padding: '20px',
+    },
+    toolbar: {
+        padding: '10px 20px'
+    }
+}
 
+const table = (props) => {
+
+    const { recordList, profiles, classes,} = props;
+
+    /** It will return the code value from profile type.... example if 'admin' it will give me 0 */
+
+    const profileStringToCode = (profile) => {
+        for(let i = 0; i<profiles.length; i++)
+            if (profiles[i].profile===profile)
+                return i;
+    }
+
+    const lookupContructorHandler = (label) => {
+        let lookup;
+        switch(label) {
+            case 'profile': /** Create the object for column lookup type from profileList i will obtain this {0: admin, 1: supervisor, 2: operator} */
+                lookup = Object.assign({}, profiles.map(value => value.profile))
+                break;
+            default:
+                ;
+        }
+        return lookup
+    }
+
+    const dropdownDataContructorHandler = field => {
+        let value;
+        switch(field.label) {
+            case 'profile':
+                value = profileStringToCode(field.value)
+                break;
+            default:;
+        }
+        return value
+    }
+
+    let cols = [];
+    if(recordList.length !== 0) {
+        for(let i = 0; i < recordList[0].length; i++) {
+            if(recordList[0][i].isRequired) {
+                    switch(recordList[0][i].lookup) {
+                    case 'textfield':
+                        recordList[0][i].editable ? cols.push({title: recordList[0][i].outPut, field: recordList[0][i].label})
+                        : cols.push({title: recordList[0][i].outPut, field: recordList[0][i].label, editable: 'never'})
+                        break;
+                    case 'dropdown':
+                        recordList[0][i].editable ? cols.push({title: recordList[0][i].outPut, field: recordList[0][i].label, lookup: lookupContructorHandler(recordList[0][i].label)})
+                        : cols.push({title: recordList[0][i].outPut, field: recordList[0][i].label, lookup: lookupContructorHandler(recordList[0][i].label), editable: 'never'})
+                        break;
+                    case 'toogle':
+                        recordList[0][i].editable ? cols.push({title: recordList[0][i].outPut, field: recordList[0][i].label, type: 'boolean', render: rowData => <Switch checked={rowData.status}/>, editComponent: props => (<Switch checked={props.rowData.status} onChange={e => props.onChange(!props.rowData.status)} />)})
+                        : cols.push({title: recordList[0][i].outPut, field: recordList[0][i].label, type: 'boolean',render: rowData => <Switch checked={rowData.status}/>, editComponent: props => (<Switch checked={props.rowData.status} onChange={e => props.onChange(!props.rowData.status)} />), editable: 'never'})
+                        break;
+                    default:
+                        recordList[0][i].editable ? cols.push({title: recordList[0][i].outPut, field: recordList[0][i].label})
+                        : cols.push({title: recordList[0][i].outPut, field: recordList[0][i].label, editable: 'never'})
+                        break;
+                    }
+            }
+        }
+    }
+
+
+    let data = []
+    if(recordList.length !== 0) {
+        for(let i = 0; i < recordList.length; i++) {
+            let dataRow = {}
+            for(let j = 0; j < recordList[i].length; j++) {
+                    
+                const x = recordList[i][j]
+                switch(x.lookup) {
+                    case 'textfield':
+                        dataRow = {...dataRow, [x.label] : x.value }
+                        break;
+                    case 'dropdown':
+                        dataRow = {...dataRow, [x.label] : dropdownDataContructorHandler(x)}
+                        break;
+                    default:
+                        dataRow = {...dataRow, [x.label] : x.value }
+                        break;
+                }
+            
+            }
+            data.push(dataRow)
+        }
+    }
+
+    const toolbar = recordList.length !== 0 ?
+                            <Grid
+                              container
+                              direction="row"
+                              justify="flex-end"
+                              alignItems="center"
+                            >
+                                <Button 
+                                    type={'addPerson'}
+                                    clicked={props.addPerson}
+                                >
+                                    <PersonAdd/>
+                                </Button>
+                            </Grid> : null
     return (
-        <MaterialTable
-            icons={tableIcons}
-            title={props.title}
-            columns={columns}
-            data={data}
-            actions={[
-                {
-                  icon: tableIcons.AddIcon,
-                  tooltip: 'Add User',
-                  isFreeAction: true,
-                  onClick: (event) => alert("You want to add a new row"),
-                }]}
-        />
+        <Paper className={classes.paper}>
+            <MaterialTable
+                style={{boxShadow: 'none'}}
+                icons={tableIcons}
+                title={props.title}
+                columns={recordList ? cols : []}
+                data={data}
+                editable = {{
+                            onRowUpdate: (newData, oldData) => new Promise((resolve, reject) => {
+                                                                        props.edited(newData, oldData);
+                                                                        resolve();
+                                                                        reject('qualcosa è andato storto')
+                            
+                                                                }),
+                            onRowDelete: oldData => new Promise((resolve, reject) => {
+                                                                    props.deleted(oldData);
+                                                                    resolve();
+                                                                    reject('qualcosa è andato storto')
+                            
+                                                            })                               }}
+                options = {{rowStyle: rowData => ({backgroundColor: ((rowData.status===undefined) ? 'white' : rowData.status ? '#D9FFD9' : '#FEE7F2')})}}
+                components = {{
+                    Toolbar: props => (
+                        //recordList.length !== 0 ?
+                        <div className={classes.toolbar}>
+                            <MTableToolbar {...props} />
+                            {toolbar}
+                        </div> // : null
+                    )
+                }}
+
+            />
+        </Paper>
     )
 }
 
-export default table;
+export default withStyles(styles)(table);
