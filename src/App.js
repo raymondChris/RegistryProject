@@ -228,7 +228,7 @@ class App extends Component {
       { 
         label: 'xf',
         outPut: 'XF',
-        value: 71423,
+        value: 70423,
         type: 'integer',
         lookup: 'numeric',
         editable: false,
@@ -275,7 +275,7 @@ class App extends Component {
       { 
         label: 'xf',
         outPut: 'XF',
-        value: 12453,
+        value: 10453,
         type: 'integer',
         lookup: 'numeric',
         editable: false,
@@ -322,7 +322,7 @@ class App extends Component {
       { 
         label: 'xf',
         outPut: 'XF',
-        value: 65453,
+        value: 69453,
         type: 'integer',
         lookup: 'numeric',
         editable: false,
@@ -368,7 +368,7 @@ class App extends Component {
         { 
           label: 'xf',
           outPut: 'XF',
-          value: 71423,
+          value: 71420,
           type: 'integer',
           lookup: 'numeric',
           editable: false,
@@ -462,7 +462,7 @@ class App extends Component {
         { 
           label: 'xf',
           outPut: 'XF',
-          value: 65453,
+          value: 65451,
           type: 'integer',
           lookup: 'numeric',
           editable: false,

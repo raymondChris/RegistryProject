@@ -52,6 +52,7 @@ const styles = theme => ({
         margin: '16px',
         height: '400px',
         overflowY: 'scroll',
+        minWidth: '633px',
     },
     toolbar: {
         padding: '10px 20px'
@@ -61,6 +62,8 @@ const styles = theme => ({
 const Table = (props) => {
 
     const { recordList, profiles, classes, rows} = props;
+
+    const [ listSearchedState, setListSearchedState] = useState({list: []})
 
     const profileStringToCode = (profile) => {
         for(let i = 0; i<profiles.length; i++)
@@ -92,23 +95,31 @@ const Table = (props) => {
     }
 
     const lookForUserHandler = (e) => {
+        
         const listUser = [...recordList];
-        let arrayIndexFoundUsers = [];
-        const stringToSearch = e.target.value.toString().toUpperCase()
-        for(let i = 0; i<listUser.length; i++) {
-            let index;
-            for(let j = 0; j<listUser[i].length; j++ ) {
-                index = listUser[i][j].value.toString().toUpperCase().indexOf(stringToSearch)
+        let arrayIndexSearchedUsers = [];
+        let arraySearchedUsers = [];
+        if(e.target.value !== '') {
+            const stringToSearch = e.target.value.toString().toUpperCase()
+            for(let i = 0; i<listUser.length; i++) {
+                let index;
+                for(let j = 0; j<listUser[i].length; j++ ) {
+                    index = listUser[i][j].value.toString().toUpperCase().indexOf(stringToSearch)
+                    if(index > -1) {
+                        break;
+                    }
+                }
                 if(index > -1) {
-                    break;
+                    arrayIndexSearchedUsers.push(i);
                 }
             }
-            if(index > -1) {
-                arrayIndexFoundUsers.push(i);
-            }
         }
-        console.log(arrayIndexFoundUsers)
+        for(let i = 0; i<arrayIndexSearchedUsers.length; i++) {
+            arraySearchedUsers.push(listUser[arrayIndexSearchedUsers[i]])
+        }
+        setListSearchedState({list: [...arraySearchedUsers]})
     }
+    
 
     let cols = [];
     if(recordList[0].length !== 0) {
@@ -138,7 +149,6 @@ const Table = (props) => {
         for(let i = 0; i < recordList.length; i++) {
             let dataRow = {}
             for(let j = 0; j < recordList[i].length; j++) {
-                    
                 const x = recordList[i][j]
                 switch(x.lookup) {
                     case 'textfield':
@@ -163,8 +173,8 @@ const Table = (props) => {
             if(data[i].id === rows[j].id)
                 data[i].tableData.checked = true 
     }
-    console.log(rows)
-    console.log(data)
+//    console.log(rows)
+//    console.log(data)
 
     return (
         <Grid container>
@@ -200,7 +210,7 @@ const Table = (props) => {
                         onSelectionChange={(rows) => props.changeSelectedRow(rows)}
                     />*/}
                     <UserList
-                        userList={recordList}
+                        userList={listSearchedState.list}
                         lookForUser={(e) => lookForUserHandler(e)}
                     />
                 </Paper>

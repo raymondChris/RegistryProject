@@ -4,9 +4,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
 
-import { Typography, TextField } from '@material-ui/core';
+import { Typography, TextField, Paper } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
@@ -21,23 +20,30 @@ const styles = theme => ({
       margin: '8px',
       textTransform: 'capitalize',
     },
+    search: {
+      marginBottom: '20px',
+    }
   }
 );
 
 const UserList = (props) => {
   
     const { classes, userList, lookForUser } = props;
+    console.log("lista è ")
+console.log(userList.length)
   return (
     <List dense className={classes.root}>
         <TextField
+            className={classes.search}
             id="standard-search" 
             required label="Search field" 
             type="search" 
             onChange={ e => lookForUser(e)}
         />
-        {userList.map((user, i) => {
+        <Paper>
+        {userList.length>0 ? userList.map((user, i) => {
             return (
-                <ListItem className={classes.row} key={user[0].value} button>
+                <ListItem className={classes.row} key={user[0].value + i} button>
                     {user.map( info => {
                             return (
                                 info.isRequired ? 
@@ -50,7 +56,9 @@ const UserList = (props) => {
                     }
                 </ListItem>
             )
-        })}
+        }) : 'No records to display'}
+        </Paper>
+        
     </List>
   );
 }
