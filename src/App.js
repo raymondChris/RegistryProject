@@ -4,6 +4,7 @@ import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
 import RegistryPage from './Pages/RegistryPage/RegistryPage';
 import ModalComponent from './UI/ModalComponent';
+
 import Button from './UI/Button';
 
 import { CssBaseline, Typography, TextField} from '@material-ui/core/';
@@ -73,13 +74,13 @@ class App extends Component {
             isRequired: true,
           },
           { 
-            label: 'age',
-            outPut: 'Age',
-            value: 91,
+            label: 'xf',
+            outPut: 'XF',
+            value: 91453,
             type: 'integer',
             lookup: 'numeric',
             editable: false,
-            isRequired: false,
+            isRequired: true,
           },
           { 
             label: 'email',
@@ -138,13 +139,13 @@ class App extends Component {
             isRequired: true,
           },
           { 
-            label: 'age',
-            outPut: 'Age',
-            value: 87,
+            label: 'xf',
+            outPut: 'XF',
+            value: 44553,
             type: 'integer',
             lookup: 'numeric',
             editable: false,
-            isRequired: false,
+            isRequired: true,
           },
           { 
             label: 'email',
@@ -196,6 +197,568 @@ class App extends Component {
         ]]
       }
     ],
+    UserList: [[
+      {
+        label: 'id',
+        outPut: '',
+        value: 'disney04m',
+        type: 'string',
+        lookup: 'textfield',
+        editable: false,
+        isRequired: false,
+      },
+      {
+        label: 'name',
+        outPut: 'Name',
+        value: 'minnie',
+        type: 'string',
+        lookup: 'textfield',
+        editable: false,
+        isRequired: true,
+      },
+      { 
+        label: 'lastName',
+        outPut: 'Last Name',
+        value: 'mouse',
+        type: 'string',
+        lookup: 'textfield',
+        editable: false,
+        isRequired: true,
+      },
+      { 
+        label: 'xf',
+        outPut: 'XF',
+        value: 71423,
+        type: 'integer',
+        lookup: 'numeric',
+        editable: false,
+        isRequired: true,
+      },
+      { 
+        label: 'email',
+        outPut: 'e-mail',
+        value: 'minnie@dmail.com',
+        type: 'string',
+        lookup: 'textfield',
+        editable: false,
+        isRequired: true,
+      },
+      ],
+      [
+      {
+        label: 'id',
+        outPut: '',
+        value: 'disney05m',
+        type: 'string',
+        lookup: 'textfield',
+        editable: false,
+        isRequired: false,
+      },
+      {
+        label: 'name',
+        outPut: 'Name',
+        value: 'daisy',
+        type: 'string',
+        lookup: 'textfield',
+        editable: false,
+        isRequired: true,
+      },
+      { 
+        label: 'lastName',
+        outPut: 'Last Name',
+        value: 'duck',
+        type: 'string',
+        lookup: 'textfield',
+        editable: false,
+        isRequired: true,
+      },
+      { 
+        label: 'xf',
+        outPut: 'XF',
+        value: 12453,
+        type: 'integer',
+        lookup: 'numeric',
+        editable: false,
+        isRequired: true,
+      },
+      { 
+        label: 'email',
+        outPut: 'e-mail',
+        value: 'daisy@dmail.com',
+        type: 'string',
+        lookup: 'textfield',
+        editable: false,
+        isRequired: true,
+      },
+      ],
+      [
+      {
+        label: 'id',
+        outPut: '',
+        value: 'disney09m',
+        type: 'string',
+        lookup: 'textfield',
+        editable: false,
+        isRequired: false,
+      },
+      {
+        label: 'name',
+        outPut: 'Name',
+        value: 'donald',
+        type: 'string',
+        lookup: 'textfield',
+        editable: false,
+        isRequired: true,
+      },
+      { 
+        label: 'lastName',
+        outPut: 'Last Name',
+        value: 'duck',
+        type: 'string',
+        lookup: 'textfield',
+        editable: false,
+        isRequired: true,
+      },
+      { 
+        label: 'xf',
+        outPut: 'XF',
+        value: 65453,
+        type: 'integer',
+        lookup: 'numeric',
+        editable: false,
+        isRequired: true,
+      },
+      { 
+        label: 'email',
+        outPut: 'e-mail',
+        value: 'donald@dmail.com',
+        type: 'string',
+        lookup: 'textfield',
+        editable: false,
+        isRequired: true,
+      },
+      ],[
+        {
+          label: 'id',
+          outPut: '',
+          value: 'disney04m',
+          type: 'string',
+          lookup: 'textfield',
+          editable: false,
+          isRequired: false,
+        },
+        {
+          label: 'name',
+          outPut: 'Name',
+          value: 'minnie',
+          type: 'string',
+          lookup: 'textfield',
+          editable: false,
+          isRequired: true,
+        },
+        { 
+          label: 'lastName',
+          outPut: 'Last Name',
+          value: 'mouse',
+          type: 'string',
+          lookup: 'textfield',
+          editable: false,
+          isRequired: true,
+        },
+        { 
+          label: 'xf',
+          outPut: 'XF',
+          value: 71423,
+          type: 'integer',
+          lookup: 'numeric',
+          editable: false,
+          isRequired: true,
+        },
+        { 
+          label: 'email',
+          outPut: 'e-mail',
+          value: 'minnie@dmail.com',
+          type: 'string',
+          lookup: 'textfield',
+          editable: false,
+          isRequired: true,
+        },
+        ],
+        [
+        {
+          label: 'id',
+          outPut: '',
+          value: 'disney05m',
+          type: 'string',
+          lookup: 'textfield',
+          editable: false,
+          isRequired: false,
+        },
+        {
+          label: 'name',
+          outPut: 'Name',
+          value: 'daisy',
+          type: 'string',
+          lookup: 'textfield',
+          editable: false,
+          isRequired: true,
+        },
+        { 
+          label: 'lastName',
+          outPut: 'Last Name',
+          value: 'duck',
+          type: 'string',
+          lookup: 'textfield',
+          editable: false,
+          isRequired: true,
+        },
+        { 
+          label: 'xf',
+          outPut: 'XF',
+          value: 12453,
+          type: 'integer',
+          lookup: 'numeric',
+          editable: false,
+          isRequired: true,
+        },
+        { 
+          label: 'email',
+          outPut: 'e-mail',
+          value: 'daisy@dmail.com',
+          type: 'string',
+          lookup: 'textfield',
+          editable: false,
+          isRequired: true,
+        },
+        ],
+        [
+        {
+          label: 'id',
+          outPut: '',
+          value: 'disney09m',
+          type: 'string',
+          lookup: 'textfield',
+          editable: false,
+          isRequired: false,
+        },
+        {
+          label: 'name',
+          outPut: 'Name',
+          value: 'donald',
+          type: 'string',
+          lookup: 'textfield',
+          editable: false,
+          isRequired: true,
+        },
+        { 
+          label: 'lastName',
+          outPut: 'Last Name',
+          value: 'duck',
+          type: 'string',
+          lookup: 'textfield',
+          editable: false,
+          isRequired: true,
+        },
+        { 
+          label: 'xf',
+          outPut: 'XF',
+          value: 65453,
+          type: 'integer',
+          lookup: 'numeric',
+          editable: false,
+          isRequired: true,
+        },
+        { 
+          label: 'email',
+          outPut: 'e-mail',
+          value: 'donald@dmail.com',
+          type: 'string',
+          lookup: 'textfield',
+          editable: false,
+          isRequired: true,
+        },
+        ],[
+          {
+            label: 'id',
+            outPut: '',
+            value: 'disney04m',
+            type: 'string',
+            lookup: 'textfield',
+            editable: false,
+            isRequired: false,
+          },
+          {
+            label: 'name',
+            outPut: 'Name',
+            value: 'minnie',
+            type: 'string',
+            lookup: 'textfield',
+            editable: false,
+            isRequired: true,
+          },
+          { 
+            label: 'lastName',
+            outPut: 'Last Name',
+            value: 'mouse',
+            type: 'string',
+            lookup: 'textfield',
+            editable: false,
+            isRequired: true,
+          },
+          { 
+            label: 'xf',
+            outPut: 'XF',
+            value: 71423,
+            type: 'integer',
+            lookup: 'numeric',
+            editable: false,
+            isRequired: true,
+          },
+          { 
+            label: 'email',
+            outPut: 'e-mail',
+            value: 'minnie@dmail.com',
+            type: 'string',
+            lookup: 'textfield',
+            editable: false,
+            isRequired: true,
+          },
+          ],
+          [
+          {
+            label: 'id',
+            outPut: '',
+            value: 'disney05m',
+            type: 'string',
+            lookup: 'textfield',
+            editable: false,
+            isRequired: false,
+          },
+          {
+            label: 'name',
+            outPut: 'Name',
+            value: 'daisy',
+            type: 'string',
+            lookup: 'textfield',
+            editable: false,
+            isRequired: true,
+          },
+          { 
+            label: 'lastName',
+            outPut: 'Last Name',
+            value: 'duck',
+            type: 'string',
+            lookup: 'textfield',
+            editable: false,
+            isRequired: true,
+          },
+          { 
+            label: 'xf',
+            outPut: 'XF',
+            value: 12453,
+            type: 'integer',
+            lookup: 'numeric',
+            editable: false,
+            isRequired: true,
+          },
+          { 
+            label: 'email',
+            outPut: 'e-mail',
+            value: 'daisy@dmail.com',
+            type: 'string',
+            lookup: 'textfield',
+            editable: false,
+            isRequired: true,
+          },
+          ],
+          [
+          {
+            label: 'id',
+            outPut: '',
+            value: 'disney09m',
+            type: 'string',
+            lookup: 'textfield',
+            editable: false,
+            isRequired: false,
+          },
+          {
+            label: 'name',
+            outPut: 'Name',
+            value: 'donald',
+            type: 'string',
+            lookup: 'textfield',
+            editable: false,
+            isRequired: true,
+          },
+          { 
+            label: 'lastName',
+            outPut: 'Last Name',
+            value: 'duck',
+            type: 'string',
+            lookup: 'textfield',
+            editable: false,
+            isRequired: true,
+          },
+          { 
+            label: 'xf',
+            outPut: 'XF',
+            value: 65453,
+            type: 'integer',
+            lookup: 'numeric',
+            editable: false,
+            isRequired: true,
+          },
+          { 
+            label: 'email',
+            outPut: 'e-mail',
+            value: 'donald@dmail.com',
+            type: 'string',
+            lookup: 'textfield',
+            editable: false,
+            isRequired: true,
+          },
+          ],[
+            {
+              label: 'id',
+              outPut: '',
+              value: 'disney04m',
+              type: 'string',
+              lookup: 'textfield',
+              editable: false,
+              isRequired: false,
+            },
+            {
+              label: 'name',
+              outPut: 'Name',
+              value: 'minnie',
+              type: 'string',
+              lookup: 'textfield',
+              editable: false,
+              isRequired: true,
+            },
+            { 
+              label: 'lastName',
+              outPut: 'Last Name',
+              value: 'mouse',
+              type: 'string',
+              lookup: 'textfield',
+              editable: false,
+              isRequired: true,
+            },
+            { 
+              label: 'xf',
+              outPut: 'XF',
+              value: 71423,
+              type: 'integer',
+              lookup: 'numeric',
+              editable: false,
+              isRequired: true,
+            },
+            { 
+              label: 'email',
+              outPut: 'e-mail',
+              value: 'minnie@dmail.com',
+              type: 'string',
+              lookup: 'textfield',
+              editable: false,
+              isRequired: true,
+            },
+            ],
+            [
+            {
+              label: 'id',
+              outPut: '',
+              value: 'disney05m',
+              type: 'string',
+              lookup: 'textfield',
+              editable: false,
+              isRequired: false,
+            },
+            {
+              label: 'name',
+              outPut: 'Name',
+              value: 'daisy',
+              type: 'string',
+              lookup: 'textfield',
+              editable: false,
+              isRequired: true,
+            },
+            { 
+              label: 'lastName',
+              outPut: 'Last Name',
+              value: 'duck',
+              type: 'string',
+              lookup: 'textfield',
+              editable: false,
+              isRequired: true,
+            },
+            { 
+              label: 'xf',
+              outPut: 'XF',
+              value: 12453,
+              type: 'integer',
+              lookup: 'numeric',
+              editable: false,
+              isRequired: true,
+            },
+            { 
+              label: 'email',
+              outPut: 'e-mail',
+              value: 'daisy@dmail.com',
+              type: 'string',
+              lookup: 'textfield',
+              editable: false,
+              isRequired: true,
+            },
+            ],
+            [
+            {
+              label: 'id',
+              outPut: '',
+              value: 'disney09m',
+              type: 'string',
+              lookup: 'textfield',
+              editable: false,
+              isRequired: false,
+            },
+            {
+              label: 'name',
+              outPut: 'Name',
+              value: 'donald',
+              type: 'string',
+              lookup: 'textfield',
+              editable: false,
+              isRequired: true,
+            },
+            { 
+              label: 'lastName',
+              outPut: 'Last Name',
+              value: 'duck',
+              type: 'string',
+              lookup: 'textfield',
+              editable: false,
+              isRequired: true,
+            },
+            { 
+              label: 'xf',
+              outPut: 'XF',
+              value: 65453,
+              type: 'integer',
+              lookup: 'numeric',
+              editable: false,
+              isRequired: true,
+            },
+            { 
+              label: 'email',
+              outPut: 'e-mail',
+              value: 'donald@dmail.com',
+              type: 'string',
+              lookup: 'textfield',
+              editable: false,
+              isRequired: true,
+            },
+            ]
+    ],
     whichRegistry: '',
     isOpen: false,
     modalAspect: undefined,
@@ -205,12 +768,9 @@ class App extends Component {
   findIndexHandler = (data, oldData) => {
     let index = -1;
     for(let i=0;i< data.length;i++){
-      console.log(data[i].id)
-      console.log(oldData.id)
       if(data[i].id === oldData.id )
        index = i;
     }
-    console.log(index)
     return index
   }
 
@@ -272,15 +832,13 @@ class App extends Component {
     this.setState({isOpen: true, modalAspect: modal})
   }
 
-  addPersonHandler = (title, body, action) => {
-    const modal = <ModalComponent
-                        close={() => this.setState({isOpen: false})}
-                        title={title}
-                        body={body}
-                        action={action}
-                    />
-    this.setState({isOpen: true, modalAspect: modal})
+  changeRegistryListHandler = (profileSelected, rowSelected, statusSelected) => {
+    console.log(profileSelected)
+    console.log(rowSelected)
+    console.log(statusSelected)
   }
+  
+
   render() {
   const { classes } = this.props;
 
@@ -304,16 +862,14 @@ class App extends Component {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <RegistryPage
+          userList={this.state.UserList}
           profList={this.state.profileList}
           regSelect={this.state.whichRegistry}
           delete={(oldData) => this.deleteRowHandler(oldData)}
           edit={(newData, oldData) => this.editRowHandler(newData, oldData)}
-          add={() => this.addPersonHandler(
-            'Add Person',
-            'Selezione delle Persone',
-            'Possibili Azioni',
-          )}
+          changeListTable={(profileSeected, rowSelected, statusSelected) => this.changeRegistryListHandler(profileSeected, rowSelected, statusSelected)}
         />
+        
       </main>
 
     </div>
