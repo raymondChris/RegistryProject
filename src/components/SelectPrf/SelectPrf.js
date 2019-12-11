@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -18,13 +18,9 @@ const styles = theme => ({
 });
 
 const SelectPrf = (props) => {
-  const { classes } = props;
-  const [age, setAge] = React.useState('');
-  const [open, setOpen] = React.useState(false);
+  const { profiles, classes, profileSelected } = props;
 
-  const handleChange = event => {
-    setAge(event.target.value);
-  };
+  const [open, setOpen] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
@@ -33,6 +29,8 @@ const SelectPrf = (props) => {
   const handleOpen = () => {
     setOpen(true);
   };
+  
+  const menu = profiles.map( value => <MenuItem key={value.profile} value={value.profile}>{value.profile}</MenuItem>)
 
   return (
     <div>
@@ -45,12 +43,10 @@ const SelectPrf = (props) => {
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={age}
-          onChange={handleChange}
+          defaultValue={profileSelected}
+          onChange={(e) => props.changed(e)}
         >
-          <MenuItem value={'Admin'}>Admin</MenuItem>
-          <MenuItem value={'Supervisor'}>Supervisor</MenuItem>
-          <MenuItem value={'Operator'}>Operator</MenuItem>
+          {menu}
         </Select>
       </FormControl>
     </div>
