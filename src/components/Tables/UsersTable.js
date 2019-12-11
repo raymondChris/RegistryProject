@@ -92,13 +92,13 @@ const Table = (props) => {
     }
 
     const lookForUserHandler = (e) => {
-        const listUser = recordList;
+        const listUser = [...recordList];
         let arrayIndexFoundUsers = [];
-        const stringToSearch = e.target.value.toUpperCase()
+        const stringToSearch = e.target.value.toString().toUpperCase()
         for(let i = 0; i<listUser.length; i++) {
             let index;
-            for(let j = 0; j<listUser[i].length; i++ ) {
-                index = listUser[i][j].value.toUpperCase().indexOf(stringToSearch)
+            for(let j = 0; j<listUser[i].length; j++ ) {
+                index = listUser[i][j].value.toString().toUpperCase().indexOf(stringToSearch)
                 if(index > -1) {
                     break;
                 }
