@@ -5,7 +5,7 @@ import Modal from '@material-ui/core/Modal';
 const styles = {
   paper: {
     position: 'absolute',
-    width: 400,
+    width: 'auto',
     border: '1px solid #cccccc',
     backgroundColor: 'whitesmoke',
   },

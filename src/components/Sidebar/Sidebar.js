@@ -3,9 +3,10 @@ import React from 'react';
 import Button from '../../UI/Button';
 
 import { PlaylistAdd } from '@material-ui/icons';
-import { Drawer, Divider, List, ListItem, ListItemText, ListItemIcon, TextField } from '@material-ui/core';
+import { Drawer, Divider, List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import SelectPrf from '../SelectPrf/SelectPrf'
+import SwitchComponent from '../../UI/SwitchComponent';
+
 
 const drawerWidth = 240;
 
@@ -23,7 +24,6 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar,
   
 });
-
 
 
 const sidebar = (props) => {
@@ -68,6 +68,8 @@ const sidebar = (props) => {
             ))}
           </List>
           <Divider/>
+          <SwitchComponent
+          />
       </Drawer>
       </div>
   )

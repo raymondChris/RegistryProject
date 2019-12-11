@@ -4,6 +4,7 @@ import React, { forwardRef } from 'react';
 import MaterialTable, { MTableToolbar } from 'material-table';
 
 import { withStyles } from '@material-ui/styles';
+import { red, green } from '@material-ui/core/colors';
 
 import { Paper, Switch, Grid } from '@material-ui/core';
 
@@ -13,6 +14,7 @@ import  { Add, PersonAdd, AddBox, ArrowDownward, Check,
           SaveAlt, Search, ViewColumn } from '@material-ui/icons/';
 
 import Button from '../../UI/Button';
+import SwitchComponent from '../../UI/SwitchComponent';
 
 const tableIcons = {
     AddIcon: forwardRef((props, ref) => <Add {...props} ref={ref} />),
@@ -93,8 +95,8 @@ const table = (props) => {
                         : cols.push({title: recordList[0][i].outPut, field: recordList[0][i].label, lookup: lookupContructorHandler(recordList[0][i].label), editable: 'never'})
                         break;
                     case 'toogle':
-                        recordList[0][i].editable ? cols.push({title: recordList[0][i].outPut, field: recordList[0][i].label, type: 'boolean', render: rowData => <Switch checked={rowData.status}/>, editComponent: props => (<Switch checked={props.rowData.status} onChange={e => props.onChange(!props.rowData.status)} />)})
-                        : cols.push({title: recordList[0][i].outPut, field: recordList[0][i].label, type: 'boolean',render: rowData => <Switch checked={rowData.status}/>, editComponent: props => (<Switch checked={props.rowData.status} onChange={e => props.onChange(!props.rowData.status)} />), editable: 'never'})
+                        recordList[0][i].editable ? cols.push({title: recordList[0][i].outPut, field: recordList[0][i].label, type: 'boolean', render: rowData => <SwitchComponent disabled={true} checked={rowData.status}/>, editComponent: props => (<SwitchComponent checked={props.rowData.status} changed={e => props.onChange(!props.rowData.status)} />)})
+                        : cols.push({title: recordList[0][i].outPut, field: recordList[0][i].label, type: 'boolean',render: rowData => <SwitchComponent disabled={true} checked={rowData.status}/>, editComponent: props => (<SwitchComponent checked={props.rowData.status} changed={e => props.onChange(!props.rowData.status)} />), editable: 'never'})
                         break;
                     default:
                         recordList[0][i].editable ? cols.push({title: recordList[0][i].outPut, field: recordList[0][i].label})

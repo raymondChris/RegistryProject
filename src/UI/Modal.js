@@ -2,10 +2,9 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 
-const styles = {
+const styles = theme => ({
   paper: {
     position: 'absolute',
-    width: 400,
     border: '1px solid #cccccc',
     backgroundColor: 'whitesmoke',
   },
@@ -34,7 +33,7 @@ const styles = {
     padding: '15px',
     borderTop: '1px solid #cccccc',
   }
-};
+});
 
 const modal = (props) => {
 
@@ -65,4 +64,4 @@ const modal = (props) => {
   );
 }
 
-export default withStyles(styles)(modal)
+export default withStyles(styles, { withTheme: true})(modal)
