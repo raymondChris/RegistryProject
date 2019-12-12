@@ -51,7 +51,7 @@ const styles = theme => ({
         padding: '20px',
         margin: '16px',
         height: '400px',
-        overflowY: 'scroll',
+        overflowY: 'auto',
         minWidth: '633px',
     },
     toolbar: {
@@ -142,7 +142,7 @@ const Table = (props) => {
             }
         }
     }
-
+    
 
     let data = []
     if(recordList.length !== 0) {

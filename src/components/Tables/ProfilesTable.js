@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useState } from 'react';
 
 
 import MaterialTable, { MTableToolbar } from 'material-table';
@@ -37,18 +37,28 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-const styles = {
+const styles = theme => ({
     paper: {
         padding: '20px',
     },
     toolbar: {
         padding: '10px 20px'
     }
-}
+})
 
-const table = (props) => {
+const Table = (props) => {
 
-    const { recordList, profiles, classes,} = props;
+    const { recordList, profiles, classes, theme } = props;
+
+    const [ buttonAddState, setButtonAddState ] = useState({
+        isDisabled: false
+    })
+
+    const disableButtonHandler = () => {
+        setButtonAddState({
+            isDisabled: true
+        })
+    }
 
     /** It will return the code value from profile type.... example if 'admin' it will give me 0 */
 
@@ -140,6 +150,7 @@ const table = (props) => {
                               alignItems="center"
                             >
                                 <Button 
+                                    disabled={ buttonAddState.isDisabled }
                                     type={'addPerson'}
                                     clicked={props.addPerson}
                                 >
@@ -147,27 +158,37 @@ const table = (props) => {
                                 </Button>
                             </Grid> : null
     return (
-        <Paper className={classes.paper}>
+        <Paper
+            elevation={0} 
+            className={classes.paper}>
             <MaterialTable
                 style={{boxShadow: 'none'}}
                 icons={tableIcons}
                 title={props.title}
                 columns={recordList ? cols : []}
                 data={data}
-                editable = {{
-                            onRowUpdate: (newData, oldData) => new Promise((resolve, reject) => {
+                localization={{ body: { editRow: { deleteText: 'You are going to delete this row, are you sure?' } } }}
+                editable = {
+                    recordList.length>0 ? {
+                    onRowUpdate: (newData, oldData) => new Promise((resolve, reject) => {
+                                                                        
                                                                         props.edited(newData, oldData);
                                                                         resolve();
                                                                         reject('qualcosa è andato storto')
                             
                                                                 }),
-                            onRowDelete: oldData => new Promise((resolve, reject) => {
+                    onRowDelete: oldData => new Promise((resolve, reject) => {
                                                                     props.deleted(oldData);
                                                                     resolve();
                                                                     reject('qualcosa è andato storto')
                             
-                                                            })                               }}
-                options = {{rowStyle: rowData => ({backgroundColor: ((rowData.status===undefined) ? 'white' : rowData.status ? '#D9FFD9' : '#FEE7F2')})}}
+                    })                               } : false}
+                options = {
+                    {
+                        rowStyle: rowData => ({backgroundColor: ((rowData.status===undefined) ? 'white' : rowData.status ? '#ffd8a3' : 'whitesmoke')}),
+                        headerStyle: { backgroundColor: theme.palette.primary.main, color: 'white'}
+                    }
+                }
                 components = {{
                     Toolbar: props => (
                         //recordList.length !== 0 ?
@@ -183,4 +204,4 @@ const table = (props) => {
     )
 }
 
-export default withStyles(styles)(table);
+export default withStyles(styles, { withTheme: true })(Table);

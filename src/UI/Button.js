@@ -12,13 +12,13 @@ const styles = theme => ({
         float: 'right',
     },
     okBtn: {
-        backgroundColor: 'green',
+        backgroundColor: theme.palette.primary.main,
         color: 'white',
     },
     cancelBtn: {
         backgroundColor: 'none',
-        border: '1px solid green',
-        color: 'green',
+        border: '1px solid ' + theme.palette.secondary.main,
+        color: theme.palette.secondary.main,
     },
     delRow: {
         color: '#888888',
@@ -59,6 +59,7 @@ const button = props => {
     return(
         <Button 
             onClick={props.clicked}
+            disabled={props.disabled}
             className={type}>
             {props.children}
         </Button>

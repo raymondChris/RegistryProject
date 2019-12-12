@@ -54,21 +54,22 @@ class RegistryPage extends Component {
     const modal =   <ModalComponent
                         close={this.hideModalHandler}
                         title={'Add Person'}
-                        body={<UserTable
-                                rows={this.state.rowSelected}
-                                profiles={this.props.profList}
-                                recordList={this.props.userList}
-                                changeStatus={this.changeStatusHandler}
-                                changeProfile={(e) => this.changeProfileHandler(e)}
-                                changeSelectedRow={(rows) => this.changeSelectedRowHandler(rows)}
-                                profileSelected={this.state.profileSelected}
-                                status={this.state.statusSelected}/>}
-                        action={<Grid
+                        body={  <UserTable
+                                  rows={this.state.rowSelected}
+                                  profiles={this.props.profList}
+                                  recordList={this.props.userList}
+                                  changeStatus={this.changeStatusHandler}
+                                  changeProfile={(e) => this.changeProfileHandler(e)}
+                                  changeSelectedRow={(rows) => this.changeSelectedRowHandler(rows)}
+                                  profileSelected={this.state.profileSelected}
+                                  status={this.state.statusSelected}/>}
+                        action={
+                            <Grid
                                     container
                                     direction="row"
                                     justify="space-between"
                                     alignItems="center"
-                                >
+                            >
                                     <Button
                                         type={'cancel'}
                                         clicked={this.hideModalHandler}
@@ -76,14 +77,13 @@ class RegistryPage extends Component {
                                     <Button
                                         type={'ok'}
                                         clicked={() => {
-                                                //this.hideModalHandler();
                                                 this.props.changeListTable( this.state.profileSelected,
-                                                                            this.sstate.rowSelected,
+                                                                            this.state.rowSelected,
                                                                             this.state.statusSelected)
                                                 }}
                                     >Confirm</Button>
                                 </Grid>}
-                    />
+                            />
 
         return(
             <div>
