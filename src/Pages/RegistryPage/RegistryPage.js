@@ -18,7 +18,6 @@ class RegistryPage extends Component {
         indexRowChecked: [],
     }
     
-
     hideModalHandler = () => {
         this.setState({isOpen: false})
     }
